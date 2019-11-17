@@ -6,8 +6,6 @@
 //  Copyright © 2019 Herve Desrosiers. All rights reserved.
 //
 
-// Source control test
-
 import UIKit
 
 class ViewController: UIViewController {
