@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     var targetValue = 0
     var currentValue = 0
     var round = 0
-    var points = 0
     var score = 0
     
     @IBOutlet weak var slider: UISlider!
@@ -26,11 +25,30 @@ class ViewController: UIViewController {
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
         resetGame()
+        
+        // custom slider skin:
+        
+//        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")
+        let thumbImageNormal = #imageLiteral(resourceName: "SliderThumb-Normal") //with Image Literal
+        slider.setThumbImage(thumbImageNormal, for: .normal)
+        
+        let thumbImageHighlighted = #imageLiteral(resourceName: "SliderThumb-Highlighted")
+        slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
+        
+        let insets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        
+        let trackLeftImage = #imageLiteral(resourceName: "SliderTrackLeft")
+        let trackLeftResizable = trackLeftImage.resizableImage(withCapInsets: insets)
+        slider.setMinimumTrackImage(trackLeftResizable, for: .normal)
+        
+        let trackRightImage = #imageLiteral(resourceName: "SliderTrackRight")
+        let trackRightResizable = trackRightImage.resizableImage(withCapInsets: insets)
+        slider.setMaximumTrackImage(trackRightResizable, for: .normal)
     }
     
     @IBAction func showAlert() {
         let difference = abs(targetValue - currentValue)
-        points = 100 - difference
+        var points = 100 - difference
         
         let title: String
         
